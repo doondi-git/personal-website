@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durga Vivek KDoondi - Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #2b6cb0;
+            --secondary: #4299e1;
+            --accent: #ebf4ff;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --success: #48bb78;
+            --text: #2d3748;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            line-height: 1.7;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/400') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .profile-info {
+            flex: 2;
+        }
+        
+        .profile-image {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .profile-image img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* Nav Styles */
+        nav {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 3;
+        }
+        
+        .skills-container {
+            flex: 2;
+        }
+        
+        .skill-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+        
+        /* Education Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: var(--primary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .timeline-content {
+            width: calc(50% - 30px);
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            float: left;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+        }
+        
+        .timeline-item::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Experience Section */
+        .experience-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .experience-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .experience-header {
+            background-color: var(--primary);
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .experience-body {
+            padding: 1.5rem;
+        }
+        
+        .experience-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .experience-company {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-date {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .experience-details {
+            list-style-type: disc;
+            margin-left: 1.2rem;
+        }
+        
+        .experience-details li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tag {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-achievements {
+            list-style-type: disc;
+            margin-left: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-achievements li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Certifications Section */
+        .certifications-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        
+        .certification-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .certification-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .certification-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .certification-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-date {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+        
+        /* Activities Section */
+        .activities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .activity-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .activity-description {
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-form-container {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-social a {
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .profile-image {
+                margin-bottom: 2rem;
+                text-align: center;
+            }
+            
+            .contact-info, .social-links {
+                justify-content: center;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                float: right !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <div class="profile-info">
+                <h1 class="name">Durga Vivek KDoondi</h1>
+                <p class="title">Computer Science Engineer</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>2200033276cseh1@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>9393953636</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Andhra Pradesh, India</span>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/karicherla-doondi-durga-vivek-789923272/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/doondi-git" title="GitHub"><i class="fab fa-github"></i></a>
+                    <!-- <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a> -->
+                </div>
+            </div>
+            <div class="profile-image">
+                <img src="https://avatars.githubusercontent.com/u/186261393?v=4" alt="DOONDI">
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Internships</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a passionate Computer Science Engineering student at KL University with strong expertise in Full Stack Development, DevOps practices, and emerging FinTech solutions. Through internships, certifications, and personal projects, I have gained hands-on experience in building scalable web applications, automating deployment pipelines, and understanding the technological landscape of financial services.</p>
+                    <p>As a fresher in the tech industry, my goal is to leverage both development and DevOps skills to create innovative, secure, and efficient solutions that address real-world challenges. I enjoy working in dynamic, team-driven environments and continuously seek opportunities to learn, adapt, and grow in the ever-evolving tech ecosystem.</p>
+                    
+                </div>
+                <div class="skills-container">
+                    <div class="skill-categories">
+                        <div class="skill-category">
+                            <h4>Languages</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C</span>
+                                <!-- <span class="skill-tag">C++</span> -->
+                                <span class="skill-tag">SQL</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Python</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Frameworks</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Spring Boot</span>
+                                <span class="skill-tag">Hibernate</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Angular</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Jenkins</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">REST API</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Soft Skills</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Communication</span>
+                                <span class="skill-tag">Problem-solving</span>
+                                <span class="skill-tag">Teamwork</span>
+                                <span class="skill-tag">Adaptability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" style="background-color: var(--accent);">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2026 (Expected)</div>
+                        <h3 class="timeline-title">B.Tech in Computer Science and Engineering</h3>
+                        <p>KL University, Andhra Pradesh</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <h3 class="timeline-title">Intermediate</h3>
+                        <p>Penuganchiprolu Government College, Penuganchiprolu, Andhra Pradesh</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <h3 class="timeline-title">School</h3>
+                        <p>Vs. St. John G Hr Sr School, Vijayawada, Andhra Pradesh, India</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Internships</h2>
+            <div class="experience-container">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Java Full Stack Developer Intern</h3>
+                        <div class="experience-company">AICT-EDU SKILLS, Vijayawada, AP</div>
+                        <div class="experience-date">Aug 2024 - Oct 2024</div>
+                    </div>
+                    <div class="experience-body">
+                        <ul class="experience-details">
+                            <li>Achieved certification in Java Full Stack Development, covering both front-end and back-end technologies.</li>
+                            <li>Acquired expertise in Core Java, Spring Boot, Hibernate, SQL, and front-end frameworks such as Angular and React.</li>
+                            <li>Built and deployed full-stack web applications and RESTful APIs, increasing user engagement by 20% and reducing server response times by 25%.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3 class="experience-title">FinTech Intern</h3>
+                        <div class="experience-company">FinTech, Vijayawada, AP</div>
+                        <div class="experience-date">May 2024 - July 2024</div>
+                    </div>
+                    <div class="experience-body">
+                        <ul class="experience-details">
+                            <li>Earned a FinTech certification, gaining comprehensive knowledge of blockchain, cryptocurrencies, and digital payments.</li>
+                            <li>Gained insights into technological transformations across banking, investment, and insurance sectors.</li>
+                            <li>Contributed to enhancing digital payment modules that reduced transaction processing time by 15% for over 2,000 users.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" style="background-color: var(--accent);">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/600/400" alt="Banking and Finance Management System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Banking and Finance Management System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Full Stack</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <ul class="project-achievements">
+                            <li>Engineered a secure financial management system using Python and MongoDB, ensuring compliance with industry security standards.</li>
+                            <li>Increased data retrieval speed by 30%, enabling faster transaction processing for over 10,000 users.</li>
+                            <li>Incorporated advanced encryption protocols, reducing potential data breach risks by 25%.</li>
+                            <li>Collaborated with a cross-functional team of five developers to create and implement RESTful APIs, improving system interoperability.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/600/400" alt="E-Commerce Website">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Website</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">MERN Stack</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <ul class="project-achievements">
+                            <li>Expanded a responsive and scalable e-commerce platform that handles over 5,000 daily transactions with a 99.9% uptime.</li>
+                            <li>Optimized front-end performance by reducing page load times by 40%, significantly boosting user satisfaction.</li>
+                            <li>Integrated a customer review and rating system that boosted engagement and built trust among users.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/600/400" alt="Corporate Grievance Management System">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Corporate Grievance Management System</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">JSP</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <ul class="project-achievements">
+                            <li>Designed and implemented a web-based platform to manage corporate grievances, decreasing resolution times by 20% and increasing employee satisfaction by 15%.</li>
+                            <li>Integrated automated notifications and a centralized dashboard, improving transparency and follow-up efficiency by 30%.</li>
+                            <li>Conducted user training sessions and gathered feedback to continuously improve the system's functionality.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/api/placeholder/600/400" alt="Student Mental Health Portal">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Student Mental Health Portal</h3>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">JSP</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <ul class="project-achievements">
+                            <li>Enhanced a comprehensive mental health management system with role-based access control using Java, REST API, JSP, MySQL, and Spring Boot.</li>
+                            <li>Integrated interactive self-help modules and real-time chat support, increasing user engagement by 25%.</li>
+                            <li>Collaborated with mental health professionals to incorporate evidence-based practices, ensuring the platform effectively addressed users' needs.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Certifications Section -->
+<section id="certifications">
+    <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <div class="certifications-container">
+            <div class="certification-card">
+                <div class="certification-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="certification-title">FindTech Professional Certificate</h3>
+                <div class="certification-date">November 2024</div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="certification-title">Red Hat Certified</h3>
+                <div class="certification-date">July 2024</div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="certification-title">Salesforce AI Associate</h3>
+                <div class="certification-date">October 2024</div>
+            </div>
+            <div class="certification-card">
+                <div class="certification-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="certification-title">Salesforce AI Specialist</h3>
+                <div class="certification-date">October 2024</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Activities Section -->
+<section id="activities" style="background-color: var(--accent);">
+    <div class="container">
+        <h2 class="section-title">Extracurricular Activities</h2>
+        <div class="activities-container">
+            <div class="activity-card">
+                <h3 class="activity-title">NSS Core Member</h3>
+                <p class="activity-description">Organized over five community service events, benefiting more than 500 local residents.</p>
+            </div>
+            <div class="activity-card">
+                <h3 class="activity-title">NCC (A Certificate Holder)</h3>
+                <p class="activity-description">Completed over 200 hours of leadership and discipline training.</p>
+            </div>
+            <div class="activity-card">
+                <h3 class="activity-title">Technical Workshops & Hackathons</h3>
+                <p class="activity-description">Participated in various technical workshops and hackathons to enhance skills and knowledge.</p>
+            </div>
+        </div>
+    </div>
+</section>
